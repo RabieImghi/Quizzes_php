@@ -314,17 +314,122 @@
     </div>
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
+    <button type="submit"  class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCours" >Ajoute une cours </button>
+    <div class="modal fade" id="addCours" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vertically Centered</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="card">
+                      <div class="card-body">
+                      <h5 class="card-title">Cours Information</h5>
+              
+                      <!-- Floating Labels Form -->
+                      <form class="row g-3">
+                          <div class="col-md-12">
+                          <div class="form-floating">
+                              <input type="text" class="form-control" id="floatingName" placeholder="Your Name">
+                              <label for="floatingName">Cours Name</label>
+                          </div>
+                          </div>
+                          <div class="col-12">
+                          <div class="form-floating">
+                              <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
+                              <label for="floatingTextarea">Cours Description</label>
+                          </div>
+                          </div>
+                          <div class="col-12">
+                              <div class="form-floating">
+                              <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 300px;"></textarea>
+                              <label for="floatingTextarea">Cours Content</label>
+                              </div>
+                          </div>
+                          <div class="text-center">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <button type="reset" class="btn btn-secondary">Reset</button>
+                          </div>
+                      </form><!-- End floating Labels Form -->
+              
+                      </div>
+                  </div> 
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
         <div class="card " style="max-width: 45%; min-width: 45%;">
             <div class="card-header">Header</div>
             <div class="card-body">
                 <h5 class="card-title">Card with header and footer</h5>
-                Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
+                Ut in ea error laudantium quas o totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+            </div>
+            <div class="card-footer">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateCours" >Update</button>
+                <div class="modal fade" id="updateCours" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Vertically Centered</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="card">
+                                  <div class="card-body">
+                                  <h5 class="card-title">Cours Information</h5>
+                          
+                                  <!-- Floating Labels Form -->
+                                  <form class="row g-3">
+                                      <div class="col-md-12">
+                                      <div class="form-floating">
+                                          <input type="text" class="form-control" value="Card with header and footer" id="floatingName" placeholder="Your Name">
+                                          <label for="floatingName">Cours Name</label>
+                                      </div>
+                                      </div>
+                                      <div class="col-12">
+                                      <div class="form-floating">
+                                          <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;">
+                                            Ut in ea error laudantium quas o totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+                                          </textarea>
+                                          <label for="floatingTextarea">Cours Description</label>
+                                      </div>
+                                      </div>
+                                      <div class="col-12">
+                                          <div class="form-floating">
+                                          <textarea class="form-control" placeholder="Address" id="floatingTextarea" style="height: 300px;">
+                                          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo dolor blanditiis sit totam veniam ex 
+                                          obcaecati aut saepe, eius ut, asperiores quaerat, magni vel iusto sapiente expedita voluptate quidem officia!
+                                          </textarea>
+                                          <label for="floatingTextarea">Cours Content</label>
+                                          </div>
+                                      </div>
+                                      <div class="text-center">
+                                      <button type="submit" class="btn btn-primary">Submit</button>
+                                      <button type="reset" class="btn btn-secondary">Reset</button>
+                                      </div>
+                                  </form><!-- End floating Labels Form -->
+                          
+                                  </div>
+                              </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        <div class="card " style="max-width: 45%; min-width: 45%;">
+            <div class="card-header">Header</div>
+            <div class="card-body">
+                <h5 class="card-title">Card with header and footer</h5>
+                Ut in ea error laudantium quas omnis s ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
                 Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
             </div>
             <div class="card-footer">
-                <button type="button" class="btn btn-info">Details</button>
+              <button type="button" class="btn btn-warning">Update</button>
+              <a type="button" class="btn btn-danger">Delete</a>
             </div>
         </div>
         <div class="card " style="max-width: 45%; min-width: 45%;">
@@ -336,7 +441,8 @@
                 Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
             </div>
             <div class="card-footer">
-                <button type="button" class="btn btn-info">Details</button>
+              <button type="button" class="btn btn-warning">Update</button>
+              <button type="button" class="btn btn-danger">Delete</button>
             </div>
         </div>
         <div class="card " style="max-width: 45%; min-width: 45%;">
@@ -348,19 +454,8 @@
                 Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
             </div>
             <div class="card-footer">
-                <button type="button" class="btn btn-info">Details</button>
-            </div>
-        </div>
-        <div class="card " style="max-width: 45%; min-width: 45%;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h5 class="card-title">Card with header and footer</h5>
-                Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-                Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-                Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-            </div>
-            <div class="card-footer">
-                <button type="button" class="btn btn-info">Details</button>
+              <button type="button" class="btn btn-warning">Update</button>
+              <button type="button" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
