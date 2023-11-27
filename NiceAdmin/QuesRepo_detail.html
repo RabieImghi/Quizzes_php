@@ -274,7 +274,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link collapsed" href="index.html">
           <i class="bi bi-grid"></i>
           <span>Statistiques  </span>
         </a>
@@ -286,7 +286,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="QuesRepo.html">
+        <a class="nav-link " href="QuesRepo.html">
           <i class="bi bi-grid"></i>
           <span>Questions & Réponses </span>
         </a>
@@ -308,14 +308,108 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-          <li class="breadcrumb-item active">Statistiques</li>
+          <li class="breadcrumb-item active">Gestion des Questions & Réponses </li>
         </ol>
       </nav>
     </div>
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
+    <div class="card " >
+        <div class="card-header">Header</div>
+        <div class="card-body">
+            <h5 class="card-title">Card with header and footer</h5>
+            Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
+            Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
+            Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+        </div>
+    </div>
+    <button type="button" class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#addQuestion">Ajoute un Questions </button>
 
-
+    <div class="modal fade" id="addQuestion" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Vertically Centered</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Vertical Form</h5>
+            
+                          <!-- Vertical Form -->
+                          <form class="row g-3">
+                            <div class="col-12">
+                              <label for="inputNanme4" class="form-label">Question</label>
+                              <input type="text" class="form-control" id="inputNanme4">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputEmail4" class="form-label">Reponse 1</label>
+                              <input type="text" class="form-control" id="inputEmail4">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputPassword4" class="form-label">Reponse 2</label>
+                              <input type="text" class="form-control" id="inputPassword4">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputAddress" class="form-label">Reponse 3</label>
+                              <input type="text" class="form-control" id="inputAddress">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Reponse 4</label>
+                                <input type="text" class="form-control" id="inputAddress">
+                            </div>
+                            <div class="col-12">
+                                <label for="inputAddress" class="form-label">Reponse Vrai</label>
+                                <div class="d-flex gap-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <label class="form-check-label" for="gridRadios1">
+                                         1
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <label class="form-check-label" for="gridRadios1">
+                                         2
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <label class="form-check-label" for="gridRadios1">
+                                         1
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <label class="form-check-label" for="gridRadios1">
+                                         2
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                          </form>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+        <h5 class="card-title">Numbered</h5>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Cras justo odio</li>
+            <li class="list-group-item">Cras justo odio</li>
+        </ol>
+        </div>
+    </div>
     </section>
   </main>
   <!-- ======= Footer ======= -->
