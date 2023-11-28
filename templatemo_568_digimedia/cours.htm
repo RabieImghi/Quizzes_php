@@ -46,12 +46,12 @@
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li class="scroll-to-section"><a href="index.html">Accueil</a></li>
-              <li class="scroll-to-section"><a href="index.html">About</a></li>
+              <li class="scroll-to-section"><a href="index.html">suivre à l'avance</a></li>
               <li class="scroll-to-section"><a href="index.html">Services</a></li>
               <li class="scroll-to-section"><a href="cours.htm" class="active">Cours</a></li>
               <li class="scroll-to-section"><a href="quizze.html">Quizzes</a></li>
               <li class="scroll-to-section"><a href="index.html">Contact</a></li> 
-              <li class="scroll-to-section"><div class="border-first-button"><a href="#contact">Free Quote</a></div></li> 
+              <li class="scroll-to-section"><div class="border-first-button"><a href="#contact">Connexion</a></div></li> 
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -65,51 +65,35 @@
   <!-- ***** Header Area End ***** -->
   <section>
     
-    <div id="contact" class="contact-us section d-flex flex-wrap gap-4" style="margin-left: 40px;">
-        <div  style="min-width: 45%; max-width: 45%;">
-            <div class="row">
-                <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-                <a href=""><form id="contact">
-                    <h1>Cours 1</h1>
-                    <div class="row p-4">
-                        <p style="color: black; font-weight: bold;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                            Mollitia minus, in delectus porro provident magni dolorem nisi 
-                            totam quos rem blanditiis nam eligendi soluta nesciunt similique doloribus aut inventore? Eius!</p>
-                    </div>
-                </form>
-                </a>
-                </div>
-            </div>
-            
+    <div id="contact" class="contact-us section row" >
+      <div class="container col-lg-5 mt-5">
+        <div class="cours">
+          <div class="cours_header">Cours 1</div>
+          <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
+          <div class="cours_footer"><a href="cours_detail.html">Commencer Cours</a></div>
         </div>
-        <div  style="min-width: 45%; max-width: 45%;">
-            <div class="row">
-                <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-                <form id="contact">
-                    <h1>Cours 1</h1>
-                    <div class="row p-4">
-                        <p style="color: black; font-weight: bold;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                            Mollitia minus, in delectus porro provident magni dolorem nisi 
-                            totam quos rem blanditiis nam eligendi soluta nesciunt similique doloribus aut inventore? Eius!</p>
-                    </div>
-                </form>
-                </div>
-            </div>
+      </div>
+      <div class="container col-lg-5 mt-5">
+        <div class="cours">
+          <div class="cours_header">Cours 1</div>
+          <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
+          <div class="cours_footer"><a href="#">Commencer Cours</a></div>
         </div>
-        <div  style="min-width: 45%; max-width: 45%;">
-            <div class="row">
-                <div class="col-lg-12 wow fadeInUp" data-wow-duration="0.5s" data-wow-delay="0.25s">
-                <form id="contact">
-                    <h1>Cours 1</h1>
-                    <div class="row p-4">
-                        <p style="color: black; font-weight: bold;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                            Mollitia minus, in delectus porro provident magni dolorem nisi 
-                            totam quos rem blanditiis nam eligendi soluta nesciunt similique doloribus aut inventore? Eius!</p>
-                    </div>
-                </form>
-                </div>
-            </div>
+      </div>
+      <div class="container col-lg-5 mt-5">
+        <div class="cours">
+          <div class="cours_header">Cours 1</div>
+          <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
+          <div class="cours_footer"><a href="#">Commencer Cours</a></div>
         </div>
+      </div>
+      <div class="container col-lg-5 mt-5">
+        <div class="cours">
+          <div class="cours_header">Cours 1</div>
+          <div class="cours_body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi rerum assumenda laboriosam maiores. Dolor, facere, placeat, voluptatem rerum adipisci ducimus quisquam dicta eius impedit iusto temporibus ab esse error odio!</div>
+          <div class="cours_footer"><a href="#">Commencer Cours</a></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -121,6 +105,36 @@
   <script src="assets/js/animation.js"></script>
   <script src="assets/js/imagesloaded.js"></script>
   <script src="assets/js/custom.js"></script>
+  <style>
+    .cours {
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
 
+    .cours_header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .cours_body {
+      padding: 15px;
+    }
+
+    .cours_footer {
+      background-color: #f8f9fa;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .cours_footer a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
 </body>
 </html>
