@@ -45,22 +45,22 @@ if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']==1){
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo">
+            <a href="index.php" class="logo">
               <img src="assets/images/logo-v3.png" alt="">
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li class="scroll-to-section"><a href="index.html" class="active">Accueil</a></li>
-              <li class="scroll-to-section"><a href="index.html">suivre à l'avance</a></li>
-              <li class="scroll-to-section"><a href="index.html">Services</a></li>
+              <li class="scroll-to-section"><a href="index.php" class="active">Accueil</a></li>
+              <li class="scroll-to-section"><a href="index.php">suivre à l'avance</a></li>
+              <li class="scroll-to-section"><a href="index.php">Services</a></li>
               <?php 
               if(isset($_SESSION['id_user'])){
               ?>
               <li class="scroll-to-section"><a href="cours.htm">Cours</a></li>
-              <li class="scroll-to-section"><a href="quizze.html">Quizzes</a></li>
+              <li class="scroll-to-section"><a href="quizze.php">Quizzes</a></li>
               <?php } ?>
-              <li class="scroll-to-section"><a href="index.html">Contact</a></li> 
+              <li class="scroll-to-section"><a href="index.php">Contact</a></li> 
               <?php 
               if(isset($_SESSION['id_user'])){
               ?>
