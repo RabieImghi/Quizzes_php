@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset( $_SESSION['roleUser']) && $_SESSION['roleUser']==1){
+  header('location: ../admin/index.php'); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,10 +54,22 @@
               <li class="scroll-to-section"><a href="index.html" class="active">Accueil</a></li>
               <li class="scroll-to-section"><a href="index.html">suivre à l'avance</a></li>
               <li class="scroll-to-section"><a href="index.html">Services</a></li>
+              <?php 
+              if(isset($_SESSION['id_user'])){
+              ?>
               <li class="scroll-to-section"><a href="cours.htm">Cours</a></li>
               <li class="scroll-to-section"><a href="quizze.html">Quizzes</a></li>
+              <?php } ?>
               <li class="scroll-to-section"><a href="index.html">Contact</a></li> 
-              <li class="scroll-to-section"><div class="border-first-button"><a href="../NiceAdmin/login.html">Connexion</a></div></li> 
+              <?php 
+              if(isset($_SESSION['id_user'])){
+              ?>
+              <li class="scroll-to-section"><div class="border-first-button"><a href="../admin/scripte.php?log_out=ok">Deconexion</a></div></li> 
+              <?php } else{
+                ?>
+              <li class="scroll-to-section"><div class="border-first-button"><a href="../admin/login.php">Connexion</a></div></li> 
+                <?php
+              } ?>
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
