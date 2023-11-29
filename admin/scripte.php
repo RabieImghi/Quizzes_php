@@ -38,3 +38,27 @@ if(isset($_GET["log_out"])){
     session_destroy();
     header('location: login.php'); 
 }
+if(isset($_POST['addCours'])){
+    extract($_POST);
+    $add_cours = "INSERT INTO course SET CourseName='$cours', CourseDescription='$description'";
+    $conn->query($add_cours);
+    header("location: cours.php");
+}
+if(isset($_POST['addCoursContent'])){
+    extract($_POST);
+    $add_content = "INSERT INTO coursedetail SET CourseID= $idCours, CourseContent ='$description' ";
+    $conn->query($add_content);
+    header("location: cours_detail.php?detail_cours_id=$idCours");
+}
+if(isset($_POST["updateCours"])){
+    extract($_POST);
+    $update_cours = "UPDATE course SET CourseName='$cours', CourseDescription='$description'WHERE CourseID = $idCours";
+    $conn->query($update_cours);
+    header("location: cours.php");
+}
+if(isset($_GET["supreme_cours_id"])){
+    $id=$_GET["supreme_cours_id"];
+    $delet_cours="DELETE FROM course WHERE CourseID = $id";
+    $conn->query($delet_cours);
+    header("location: cours.php");
+}

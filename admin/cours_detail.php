@@ -317,112 +317,33 @@ require_once "../connection.php";
     </div>
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
-    <button type="submit"  class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCours" >
-      Ajoute une cours
-    </button>
-    <div class="modal fade" id="addCours" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Vertically Centered</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <div class="card">
-                      <div class="card-body">
-                      <h5 class="card-title">Cours Information</h5>
-                      <!-- Floating Labels Form -->
-                      <form class="row g-3" method="post" action='scripte.php'>
-                          <div class="col-md-12">
-                          <div class="form-floating">
-                              <input type="text" name="cours" class="form-control" id="floatingName" placeholder="Your Name">
-                              <label for="floatingName">Cours Name</label>
-                          </div>
-                          </div>
-                          <div class="col-12">
-                          <div class="form-floating">
-                              <textarea  name="description"  class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"></textarea>
-                              <label for="floatingTextarea">Cours Description</label>
-                          </div>
-                          </div>
-                          <div class="text-center">
-                          <button type="submit" name="addCours" class="btn btn-primary">Submit</button>
-                          <button type="reset" class="btn btn-secondary">Reset</button>
-                          </div>
-                      </form><!-- End floating Labels Form -->
-              
-                      </div>
-                  </div> 
-                </div>
+    <?php 
+    $id_Cours = $_GET['detail_cours_id'];
+    $cours_detail = "SELECT * FROM course WHERE CourseID = $id_Cours";
+    $cours=$conn->query($cours_detail);
+    $cour=$cours->fetch_assoc();
+    ?>
+    <div class="container mt-5">
+        <div class="cours border rounded">
+            <div class="cours_heder bg-primary text-white p-3"><?=$cour["CourseName"]?></div>
+            <div class="cours_desc p-3">
+            <?=$cour["CourseDescription"]?>
+            </div>
+            <div class="cours_footer bg-light p-3">
+            
             </div>
         </div>
     </div>
-    <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
-      <?php
-        $select_cours = "SELECT * FROM course";
-        $cours=$conn->query($select_cours);
-        while($cour=$cours->fetch_assoc()){
-      ?>
-      <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header"><?=$cour["CourseName"]?></div>
-          <div class="card-body">
-          <?=$cour["CourseDescription"]?>
-          </div>
-          <div class="card-footer">
-              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateCours<?=$cour["CourseID"]?>" >
-                Mettre a jour
-              </button>
-              <div class="modal fade" id="updateCours<?=$cour["CourseID"]?>" tabindex="-1">
-                  <div class="modal-dialog modal-dialog-centered modal-lg">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h5 class="modal-title">Mettre a jour cours</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <div class="card">
-                                <div class="card-body">
-                                <h5 class="card-title">Cours Information</h5>
-                        
-                                <!-- Floating Labels Form -->
-                                <form class="row g-3"  method="post" action='scripte.php'>
-                                    <div class="col-md-12">
-                                    <div class="form-floating">
-                                        <input type="text" name="cours" value='<?=$cour["CourseName"]?>' class="form-control" value="Card with header and footer" id="floatingName" placeholder="Your Name">
-                                        <label for="floatingName">Cours Name</label>
-                                    </div>
-                                    </div>
-                                    <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea name="description" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"><?=$cour["CourseDescription"]?> 
-                                        </textarea>
-                                        <label for="floatingTextarea">Cours Description</label>
-                                    </div>
-                                    </div>
-                                    <div class="text-center">
-                                      <input type="hidden" value='<?=$cour["CourseID"]?>' name='idCours'>
-                                    <button type="submit" name="updateCours" class="btn btn-primary">Submit</button>
-                                    <button type="reset" class="btn btn-secondary">Reset</button>
-                                    </div>
-                                </form><!-- End floating Labels Form -->
-                        
-                                </div>
-                            </div> 
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <a class="btn btn-success" href="cours_detail.php?detail_cours_id=<?=$cour["CourseID"]?>">Details</a>
-              <a class="btn btn-danger" href="scripte.php?supreme_cours_id=<?=$cour["CourseID"]?>">supreme</a>
-
-          </div>
-      </div>
-      <?php
-        }
-      ?>  
+    <div class="container mt-4">
+    <div class="cours_content">
+        <div class="cours_part bg-light p-4">
+            <textarea ondblclick="openInput()"  id='text_content' style='  border: none; outline: none; background: transparent; width:100%;overflow-y: hidden;resize: none;' readonly>
+            locale_accept_from_http
+        </textarea>
+        </div>
         
     </div>
-
+</div>
     </section>
   </main>
   <!-- ======= Footer ======= -->
@@ -436,6 +357,7 @@ require_once "../connection.php";
   </footer>
   <!-- Vendor JS Files -->
   <div class="script">
+    <script src="assets/js/update.js"></script>
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/chart.js/chart.umd.js"></script>
