@@ -56,3 +56,28 @@ if(isset($_GET["supreme_cours_id"])){
     $conn->query($delet_cours);
     header("location: cours.php");
 }
+if(isset($_POST['add_quiz_cours'])){
+    extract($_POST);
+    $sql = "INSERT INTO quiz SET quizName='$quiz_name', courseID = $id_cours, isComplete=0";
+    $conn->query($sql);
+    header("location: QuesRepo_detail.php?id_cours=$id_cours");
+}
+if(isset($_POST['add_quesion_cours'])){
+    extract($_POST);
+    $insert_Question = "INSERT INTO question SET quizID =$quize_id, questionText ='$question'";
+    $conn->query($insert_Question);
+    $question_id = $conn->insert_id;
+    $isCorect = 0;
+    for($i=0;$i<4;$i++){
+        $anwser = $reponse[$i];
+        if($i==$reponseVrai) $isCorect = 1;
+        $insert_Answer = "INSERT INTO answer SET questionID=$question_id, answerText ='$anwser', IsCorrect = $isCorect";
+        $conn->query($insert_Answer);
+        $isCorect = 0;
+    }
+    header("location: QuesRepo_detail.php?id_cours=$id_cours");
+}
+if(isset($_POST["filter_quesion"])){
+    extract($_POST);
+    header("location: QuesRepo_detail.php?id_cours=$id_cours&id_quize_filter=$quize_id");
+}

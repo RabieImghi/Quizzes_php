@@ -334,8 +334,37 @@ $cour=$cours->fetch_assoc()
         <?=$cour["courseDescription"]?>
         </div>
     </div>
+    <button type="button" class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#addQuiz">Ajoute un Quiz </button>
+    <div class="modal fade" id="addQuiz" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajoute Quiz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+            
+                          <!-- Vertical Form -->
+                          <form class="row g-3" method="post" action='scripte.php'>
+                            <div class="col-12">
+                              <label for="inputNanme4" class="form-label">Quiz Nom</label>
+                              <input type="text" name="quiz_name" class="form-control" id="inputNanme4">
+                            </div>
+                            <input type="hidden" name='id_cours' value='<?=$id_cours?>'>
+                            <div class="text-center">
+                              <button type="submit" name="add_quiz_cours" class="btn btn-primary">Submit</button>
+                              <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                          </form>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
     <button type="button" class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#addQuestion">Ajoute un Questions </button>
-
     <div class="modal fade" id="addQuestion" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -351,55 +380,70 @@ $cour=$cours->fetch_assoc()
                           <form class="row g-3" method="post" action='scripte.php'>
                             <div class="col-12">
                               <label for="inputNanme4" class="form-label">Question</label>
-                              <input type="text" class="form-control" id="inputNanme4">
+                              <input type="text" name="question" class="form-control" id="inputNanme4">
                             </div>
                             <div class="col-12">
                               <label for="inputEmail4" class="form-label">Reponse 1</label>
-                              <input type="text" class="form-control" id="inputEmail4">
+                              <input type="text" name="reponse[]" class="form-control" id="inputEmail4">
                             </div>
                             <div class="col-12">
                               <label for="inputPassword4" class="form-label">Reponse 2</label>
-                              <input type="text" class="form-control" id="inputPassword4">
+                              <input type="text" name="reponse[]"  class="form-control" id="inputPassword4">
                             </div>
                             <div class="col-12">
                               <label for="inputAddress" class="form-label">Reponse 3</label>
-                              <input type="text" class="form-control" id="inputAddress">
+                              <input type="text" name="reponse[]"  class="form-control" id="inputAddress">
                             </div>
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Reponse 4</label>
-                                <input type="text" class="form-control" id="inputAddress">
+                                <input type="text" name="reponse[]"  class="form-control" id="inputAddress">
+                            </div>
+                            <div class="col-12">
+                              <label for="inputNanme4" class="form-label">Selct quiz</label>
+                              <select name="quize_id" class="form-control">
+                                <?php
+                                  $select_quize="SELECT * FROM quiz WHERE courseID=$id_cours";
+                                  $quizez=$conn->query($select_quize);
+                                  while($quiz=$quizez->fetch_assoc()){
+                                ?>
+                                <option value="<?=$quiz['quizID']?>"><?=$quiz['quizName']?></option>
+                                <?php
+                                  }
+                                ?>
+                              </select>
                             </div>
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Reponse Vrai</label>
                                 <div class="d-flex gap-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <input class="form-check-input" type="radio" name="reponseVrai" id="gridRadios1" value="0" >
                                         <label class="form-check-label" for="gridRadios1">
                                          1
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <input class="form-check-input" type="radio" name="reponseVrai" id="gridRadios1" value="1" >
                                         <label class="form-check-label" for="gridRadios1">
                                          2
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <input class="form-check-input" type="radio" name="reponseVrai" id="gridRadios1" value="2" >
                                         <label class="form-check-label" for="gridRadios1">
-                                         1
+                                         3
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked="">
+                                        <input class="form-check-input" type="radio" name="reponseVrai" id="gridRadios1" value="3" >
                                         <label class="form-check-label" for="gridRadios1">
-                                         2
+                                         4
                                         </label>
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name='id_cours' value='<?=$id_cours?>'>
                             <div class="text-center">
-                              <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="submit" name="add_quesion_cours" class="btn btn-primary">Submit</button>
                               <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
                           </form>
@@ -412,17 +456,55 @@ $cour=$cours->fetch_assoc()
     <?php
       $sql ="SELECT * FROM quiz q NATURAL JOIN question NATURAL JOIN answer WHERE q.courseID = $id_cours";
     ?>
-    <div class="card">
+    <form class="pt-2 pb-4" method="post" action='scripte.php'>
+      <div class='row'>
+        <div class="col-2">
+          <select name="quize_id" class="form-control">
+            <?php
+              $select_quize="SELECT * FROM quiz WHERE courseID=$id_cours";
+              $quizez=$conn->query($select_quize);
+              while($quiz=$quizez->fetch_assoc()){
+            ?>
+            <option value="<?=$quiz['quizID']?>"><?=$quiz['quizName']?></option>
+            <?php
+              }
+            ?>
+          </select>
+        </div>
+        <input type="hidden" name='id_cours' value='<?=$id_cours?>'>
+        <button type="submit" name='filter_quesion' class=" col-2 btn btn-outline-dark">Filtre by quize</button>
+      </div>
+    </form>
+    <?php
+      if(isset($_GET['id_quize_filter'])){
+        $id_quize_filter=$_GET['id_quize_filter'];
+        $select_question_name="SELECT * FROM question WHERE question.quizID =$id_quize_filter";
+        $question_names=$conn->query($select_question_name);
+        if($question_names)
+        while($question_name=$question_names->fetch_assoc()){
+          $quistion_id=$question_name["questionID"];
+      ?>
+      <div class="card">
         <div class="card-body">
-        <h5 class="card-title">Numbered</h5>
+        <h5 class="card-title"><?php if(!empty($question_name["questionText"])) echo $question_name["questionText"] ?></h5>
         <ol class="list-group list-group-numbered">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Cras justo odio</li>
+          <?php
+          $select_questions="SELECT * FROM quiz NATURAL JOIN question NATURAL JOIN answer WHERE answer.questionID = $quistion_id";
+          $questions=$conn->query($select_questions);
+          if($questions)
+          while($question=$questions->fetch_assoc()){
+          ?>
+            <li class="list-group-item"><?=$question["answerText"]?></li>
+            <?php
+            }
+            ?>
         </ol>
         </div>
-    </div>
+      </div>
+    <?php
+    }
+      }
+      ?>
     
     </section>
   </main>
