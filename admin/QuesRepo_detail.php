@@ -1,3 +1,17 @@
+<?php
+require_once "../connection.php";
+if(!isset($_SESSION['id_user'])){
+  header('location: ../admin/login.php'); 
+}else if($_SESSION['roleUser']=="etudiants"){
+  header('location: ../user/index.php'); 
+}
+if(isset($_GET["id_cours"])){
+$id_cours=$_GET["id_cours"];
+$select_cours = "SELECT * FROM course WHERE courseID = $id_cours";
+$cours=$conn->query($select_cours);
+$cour=$cours->fetch_assoc()
+      
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -315,12 +329,9 @@
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
     <div class="card " >
-        <div class="card-header">Header</div>
+        <div class="card-header"><?=$cour["courseName"]?></div>
         <div class="card-body">
-            <h5 class="card-title">Card with header and footer</h5>
-            Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-            Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-            Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+        <?=$cour["courseDescription"]?>
         </div>
     </div>
     <button type="button" class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#addQuestion">Ajoute un Questions </button>
@@ -329,16 +340,15 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Vertically Centered</h5>
+                    <h5 class="modal-title">Ajoute questions</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="card">
                         <div class="card-body">
-                          <h5 class="card-title">Vertical Form</h5>
             
                           <!-- Vertical Form -->
-                          <form class="row g-3">
+                          <form class="row g-3" method="post" action='scripte.php'>
                             <div class="col-12">
                               <label for="inputNanme4" class="form-label">Question</label>
                               <input type="text" class="form-control" id="inputNanme4">
@@ -399,6 +409,9 @@
             </div>
         </div>
     </div>
+    <?php
+      $sql ="SELECT * FROM quiz q NATURAL JOIN question NATURAL JOIN answer WHERE q.courseID = $id_cours";
+    ?>
     <div class="card">
         <div class="card-body">
         <h5 class="card-title">Numbered</h5>
@@ -410,6 +423,7 @@
         </ol>
         </div>
     </div>
+    
     </section>
   </main>
   <!-- ======= Footer ======= -->
@@ -438,3 +452,4 @@
 </body>
 
 </html>
+<?php } ?>

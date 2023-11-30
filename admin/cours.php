@@ -1,5 +1,10 @@
 <?php 
 require_once "../connection.php";
+if(!isset($_SESSION['id_user'])){
+  header('location: ../admin/login.php'); 
+}else if($_SESSION['roleUser']=="etudiants"){
+  header('location: ../user/index.php'); 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -346,7 +351,7 @@ require_once "../connection.php";
                           </div>
                           </div>
                           <div class="text-center">
-                          <button type="submit" name="addCours" class="btn btn-primary">Submit</button>
+                          <button type="submit" name="addCours" class="btn btn-primary">Ajoute</button>
                           <button type="reset" class="btn btn-secondary">Reset</button>
                           </div>
                       </form><!-- End floating Labels Form -->
@@ -364,15 +369,16 @@ require_once "../connection.php";
         while($cour=$cours->fetch_assoc()){
       ?>
       <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header"><?=$cour["CourseName"]?></div>
+          <div class="card-header"><?=$cour["courseName"]?></div>
           <div class="card-body">
-          <?=$cour["CourseDescription"]?>
+          <textarea class="textDown" style='display:none;'><?=$cour["courseDescription"]?></textarea>
+          <p class='decriptionContent'> </p>
           </div>
           <div class="card-footer">
-              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateCours<?=$cour["CourseID"]?>" >
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateCours<?=$cour["courseID"]?>" >
                 Mettre a jour
               </button>
-              <div class="modal fade" id="updateCours<?=$cour["CourseID"]?>" tabindex="-1">
+              <div class="modal fade" id="updateCours<?=$cour["courseID"]?>" tabindex="-1">
                   <div class="modal-dialog modal-dialog-centered modal-lg">
                       <div class="modal-content">
                           <div class="modal-header">
@@ -388,19 +394,19 @@ require_once "../connection.php";
                                 <form class="row g-3"  method="post" action='scripte.php'>
                                     <div class="col-md-12">
                                     <div class="form-floating">
-                                        <input type="text" name="cours" value='<?=$cour["CourseName"]?>' class="form-control" value="Card with header and footer" id="floatingName" placeholder="Your Name">
+                                        <input type="text" name="cours" value='<?=$cour["courseName"]?>' class="form-control" value="Card with header and footer" id="floatingName" placeholder="Your Name">
                                         <label for="floatingName">Cours Name</label>
                                     </div>
                                     </div>
                                     <div class="col-12">
                                     <div class="form-floating">
-                                        <textarea name="description" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"><?=$cour["CourseDescription"]?> 
+                                        <textarea name="description" class="form-control" placeholder="Address" id="floatingTextarea" style="height: 100px;"><?=$cour["courseDescription"]?> 
                                         </textarea>
                                         <label for="floatingTextarea">Cours Description</label>
                                     </div>
                                     </div>
                                     <div class="text-center">
-                                      <input type="hidden" value='<?=$cour["CourseID"]?>' name='idCours'>
+                                      <input type="hidden" value='<?=$cour["courseID"]?>' name='idCours'>
                                     <button type="submit" name="updateCours" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                     </div>
@@ -412,15 +418,13 @@ require_once "../connection.php";
                       </div>
                   </div>
               </div>
-              <a class="btn btn-success" href="cours_detail.php?detail_cours_id=<?=$cour["CourseID"]?>">Details</a>
-              <a class="btn btn-danger" href="scripte.php?supreme_cours_id=<?=$cour["CourseID"]?>">supreme</a>
+              <a class="btn btn-danger" href="scripte.php?supreme_cours_id=<?=$cour["courseID"]?>">supreme</a>
 
           </div>
       </div>
       <?php
         }
       ?>  
-        
     </div>
 
     </section>
@@ -447,6 +451,17 @@ require_once "../connection.php";
   </div>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script>
+    var fullText=document.querySelectorAll('.textDown'); 
+    var newTewt =document.querySelectorAll('.decriptionContent');
+    var i=0;
+    fullText.forEach(text => {
+        const lines = text.value.split('\n').slice(0, 1);
+        const truncatedText = lines.join('<br>');
+        newTewt[i].innerHTML = truncatedText +" ...";
+        i++;
+    });
+  </script>
 
 </body>
 

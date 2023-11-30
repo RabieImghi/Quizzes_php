@@ -1,3 +1,11 @@
+<?php
+require_once "../connection.php";
+if(!isset($_SESSION['id_user'])){
+  header('location: ../admin/login.php'); 
+}else if($_SESSION['roleUser']=="etudiants"){
+  header('location: ../user/index.php'); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -315,46 +323,20 @@
     <section class="section dashboard">
 <!--Content  ------------------------------------------------>
     <div class="allCours d-flex gap-5" style="flex-wrap: wrap;">
+      <?php
+        $select_cours = "SELECT * FROM course";
+        $cours=$conn->query($select_cours);
+        while($cour=$cours->fetch_assoc()){
+      ?>
       <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header">Header</div>
+          <div class="card-header"><?=$cour["courseName"]?></div>
           <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
+            <textarea class="textDown" style='display:none;'><?=$cour["courseDescription"]?></textarea>
+            <p class='decriptionContent'> </p>    
           </div>
-          <a href="QuesRepo_detail.php" class="btn btn-success">Gestion des Questions & Réponses</a>
+          <a href="QuesRepo_detail.php?id_cours=<?=$cour["courseID"]?>" class="btn btn-success">Gestion des Questions & Réponses</a>
       </div>
-      <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-          </div>
-          <a href="#" class="btn btn-success">Gestion des Questions & Réponses</a>
-      </div>
-      <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-          </div>
-          <a href="#" class="btn btn-success">Gestion des Questions & Réponses</a>
-      </div>
-      <div class="card " style="max-width: 45%; min-width: 45%;">
-          <div class="card-header">Header</div>
-          <div class="card-body">
-              <h5 class="card-title">Card with header and footer</h5>
-              Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
-              Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam. Enim fuga ipsum dolor nulla quia ut.
-              Rerum dolor voluptatem et deleniti libero totam numquam nobis distinctio. Sit sint aut. Consequatur rerum in.
-          </div>
-          <a href="#" class="btn btn-success">Gestion des Questions & Réponses</a>
-      </div>
+      <?php } ?>
     </div>
 
     </section>
@@ -381,7 +363,17 @@
   </div>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script>
+    var fullText=document.querySelectorAll('.textDown'); 
+    var newTewt =document.querySelectorAll('.decriptionContent');
+    var i=0;
+    fullText.forEach(text => {
+        const lines = text.value.split('\n').slice(0, 1);
+        const truncatedText = lines.join('<br>');
+        newTewt[i].innerHTML = truncatedText +" ...";
+        i++;
+    });
+  </script>
 </body>
 
 </html>
