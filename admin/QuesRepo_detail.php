@@ -460,7 +460,7 @@ $id_quize= $cour['quizID'];
         <button type="submit" name='filter_quesion' class=" col-2 btn btn-outline-dark">Filtre by quize</button>
       </div>
     </form> -->
-    <?php
+    <?  
         $select_question_name="SELECT * FROM question WHERE question.quizID =$id_quize";
         $question_names=$conn->query($select_question_name);
         if($question_names)
