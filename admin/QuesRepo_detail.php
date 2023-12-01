@@ -7,10 +7,10 @@ if(!isset($_SESSION['id_user'])){
 }
 if(isset($_GET["id_cours"])){
 $id_cours=$_GET["id_cours"];
-$select_cours = "SELECT * FROM course WHERE courseID = $id_cours";
+$select_cours = "SELECT * FROM course NATURAL JOIN quiz WHERE courseID = $id_cours";
 $cours=$conn->query($select_cours);
-$cour=$cours->fetch_assoc()
-      
+$cour=$cours->fetch_assoc();
+$id_quize= $cour['quizID']; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -334,7 +334,7 @@ $cour=$cours->fetch_assoc()
         <?=$cour["courseDescription"]?>
         </div>
     </div>
-    <button type="button" class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#addQuiz">Ajoute un Quiz </button>
+    <!-- <button type="button" class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#addQuiz">Ajoute un Quiz </button>
     <div class="modal fade" id="addQuiz" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -346,7 +346,6 @@ $cour=$cours->fetch_assoc()
                     <div class="card">
                         <div class="card-body">
             
-                          <!-- Vertical Form -->
                           <form class="row g-3" method="post" action='scripte.php'>
                             <div class="col-12">
                               <label for="inputNanme4" class="form-label">Quiz Nom</label>
@@ -363,7 +362,7 @@ $cour=$cours->fetch_assoc()
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <button type="button" class="btn btn-primary mb-3"  data-bs-toggle="modal" data-bs-target="#addQuestion">Ajoute un Questions </button>
     <div class="modal fade" id="addQuestion" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -376,7 +375,6 @@ $cour=$cours->fetch_assoc()
                     <div class="card">
                         <div class="card-body">
             
-                          <!-- Vertical Form -->
                           <form class="row g-3" method="post" action='scripte.php'>
                             <div class="col-12">
                               <label for="inputNanme4" class="form-label">Question</label>
@@ -398,20 +396,7 @@ $cour=$cours->fetch_assoc()
                                 <label for="inputAddress" class="form-label">Reponse 4</label>
                                 <input type="text" name="reponse[]"  class="form-control" id="inputAddress">
                             </div>
-                            <div class="col-12">
-                              <label for="inputNanme4" class="form-label">Selct quiz</label>
-                              <select name="quize_id" class="form-control">
-                                <?php
-                                  $select_quize="SELECT * FROM quiz WHERE courseID=$id_cours";
-                                  $quizez=$conn->query($select_quize);
-                                  while($quiz=$quizez->fetch_assoc()){
-                                ?>
-                                <option value="<?=$quiz['quizID']?>"><?=$quiz['quizName']?></option>
-                                <?php
-                                  }
-                                ?>
-                              </select>
-                            </div>
+                            <input type='hidden' name="quize_id" value='<?=$id_quize?>' class="form-control">
                             <div class="col-12">
                                 <label for="inputAddress" class="form-label">Reponse Vrai</label>
                                 <div class="d-flex gap-3">
@@ -456,7 +441,7 @@ $cour=$cours->fetch_assoc()
     <?php
       $sql ="SELECT * FROM quiz q NATURAL JOIN question NATURAL JOIN answer WHERE q.courseID = $id_cours";
     ?>
-    <form class="pt-2 pb-4" method="post" action='scripte.php'>
+    <!-- <form class="pt-2 pb-4" method="post" action='scripte.php'>
       <div class='row'>
         <div class="col-2">
           <select name="quize_id" class="form-control">
@@ -474,11 +459,9 @@ $cour=$cours->fetch_assoc()
         <input type="hidden" name='id_cours' value='<?=$id_cours?>'>
         <button type="submit" name='filter_quesion' class=" col-2 btn btn-outline-dark">Filtre by quize</button>
       </div>
-    </form>
+    </form> -->
     <?php
-      if(isset($_GET['id_quize_filter'])){
-        $id_quize_filter=$_GET['id_quize_filter'];
-        $select_question_name="SELECT * FROM question WHERE question.quizID =$id_quize_filter";
+        $select_question_name="SELECT * FROM question WHERE question.quizID =$id_quize";
         $question_names=$conn->query($select_question_name);
         if($question_names)
         while($question_name=$question_names->fetch_assoc()){
@@ -503,7 +486,6 @@ $cour=$cours->fetch_assoc()
       </div>
     <?php
     }
-      }
       ?>
     
     </section>
